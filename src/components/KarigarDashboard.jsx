@@ -1,4 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
+const pulseStyle = `
+@keyframes pulse {
+  0% { background-position: -200px 0 }
+  100% { background-position: calc(200px + 100%) 0 }
+}
+`;
 
 function LoadingSkeleton({ rows = 3 }) {
   const skeleton = {
@@ -7,19 +14,34 @@ function LoadingSkeleton({ rows = 3 }) {
     height: 64,
     marginBottom: 12,
     animation: "pulse 1.4s infinite",
+    backgroundSize: "200% 100%",
   };
+
   return (
     <div>
-      <style>{`@keyframes pulse{0%{background-position:-200px 0}100%{background-position:calc(200px + 100%) 0}}`}</style>
+      <style>{pulseStyle}</style>
       {Array.from({ length: rows }).map((_, i) => (
-        <div key={i} style={{ ...skeleton, backgroundSize: "200% 100%" }} />
+        <div key={`skeleton-${i}`} style={skeleton} />
       ))}
     </div>
   );
 }
 
 function OptimizedImage({ src, alt = "", style = {} }) {
-  return <img src={src} alt={alt} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 6, ...style }} />;
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        borderRadius: 6,
+        ...style,
+      }}
+    />
+  );
 }
 
 export default function KarigarDashboard() {
@@ -27,7 +49,6 @@ export default function KarigarDashboard() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    setLoading(true);
     const t = setTimeout(() => {
       setOrders([
         { id: "K-1001", item: "Gold Ring", status: "Pending", due: "2025-11-20" },
@@ -63,6 +84,7 @@ export default function KarigarDashboard() {
 
       <section style={{ marginTop: 26 }}>
         <h3>Recent Orders</h3>
+
         {loading ? (
           <LoadingSkeleton rows={3} />
         ) : (
@@ -70,7 +92,10 @@ export default function KarigarDashboard() {
             {orders.map((o) => (
               <div key={o.id} style={orderRowStyle}>
                 <div style={{ width: 120, height: 80 }}>
-                  <OptimizedImage src={`https://via.placeholder.com/360x240?text=${encodeURIComponent(o.item)}`} alt={o.item} />
+                  <OptimizedImage
+                    src={`https://via.placeholder.com/360x240?text=${encodeURIComponent(o.item)}`}
+                    alt={o.item}
+                  />
                 </div>
 
                 <div style={{ flex: 1, paddingLeft: 12 }}>
@@ -81,8 +106,13 @@ export default function KarigarDashboard() {
                 </div>
 
                 <div style={{ minWidth: 110, textAlign: "right" }}>
-                  <div style={{ color: statusColor(o.status), fontSize: 13 }}>{o.status}</div>
-                  <button onClick={() => alert(`Open order ${o.id}`)} style={{ marginTop: 8, padding: "8px 10px", borderRadius: 8, border: "none", background: "#111827", color: "#fff" }}>
+                  <div style={{ color: statusColor(o.status), fontSize: 13 }}>
+                    {o.status}
+                  </div>
+                  <button
+                    onClick={() => alert(`Open order ${o.id}`)}
+                    style={actionBtn}
+                  >
                     Open
                   </button>
                 </div>
@@ -95,6 +125,37 @@ export default function KarigarDashboard() {
   );
 }
 
-const cardStyle = { padding: 14, background: "#fff", borderRadius: 10, minWidth: 160, boxShadow: "0 8px 30px rgba(2,6,23,0.06)" };
-const orderRowStyle = { display: "flex", gap: 12, alignItems: "center", padding: 12, background: "#fff", borderRadius: 10, boxShadow: "0 6px 18px rgba(2,6,23,0.04)" };
-function statusColor(s) { if (!s) return "#374151"; if (s.toLowerCase().includes("pending")) return "#b45309"; if (s.toLowerCase().includes("in progress")) return "#2563eb"; if (s.toLowerCase().includes("done")) return "#059669"; return "#374151"; }
+const cardStyle = {
+  padding: 14,
+  background: "#fff",
+  borderRadius: 10,
+  minWidth: 160,
+  boxShadow: "0 8px 30px rgba(2,6,23,0.06)",
+};
+
+const orderRowStyle = {
+  display: "flex",
+  gap: 12,
+  alignItems: "center",
+  padding: 12,
+  background: "#fff",
+  borderRadius: 10,
+  boxShadow: "0 6px 18px rgba(2,6,23,0.04)",
+};
+
+const actionBtn = {
+  marginTop: 8,
+  padding: "8px 10px",
+  borderRadius: 8,
+  border: "none",
+  background: "#111827",
+  color: "#fff",
+};
+
+function statusColor(s) {
+  if (!s) return "#374151";
+  if (s.toLowerCase().includes("pending")) return "#b45309";
+  if (s.toLowerCase().includes("in progress")) return "#2563eb";
+  if (s.toLowerCase().includes("done")) return "#059669";
+  return "#374151";
+}

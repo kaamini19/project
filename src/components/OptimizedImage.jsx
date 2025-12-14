@@ -1,10 +1,13 @@
 import React from "react";
 
-export default function OptimizedImage({ src, alt, className }) {
+const FALLBACK_IMAGE =
+  "https://via.placeholder.com/400x300?text=Image+Unavailable";
+
+export default function OptimizedImage({ src, alt = "", className = "" }) {
   return (
     <img
-      src={src}
-      alt={alt || ""}
+      src={src || FALLBACK_IMAGE}
+      alt={alt}
       className={className}
       loading="lazy"
       style={{ objectFit: "cover" }}

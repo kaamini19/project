@@ -1,13 +1,12 @@
+import React from "react";
 import "./HomePage.css";
 
 const AdminLogin = () => {
   return (
     <div className="home-container">
-      <div className="icon-circle">
-        🛡️
-      </div>
+      <div className="icon-circle">🛡️</div>
 
-      <h2 className="admin-title">\Admin Panel</h2>
+      <h2 className="admin-title">Admin Panel</h2>
       <p className="admin-subtitle">JewelryOrderManagementSystem</p>
 
       <label className="password-label">Password</label>
