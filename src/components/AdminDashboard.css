@@ -1,0 +1,79 @@
+.admin-wrapper {
+  background: #fff8f2;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+/* HEADER */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-left {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.admin-icon {
+  background: #f15a24;
+  color: white;
+  font-size: 22px;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.admin-left h2 {
+  margin: 0;
+  color: #f15a24;
+}
+
+.admin-left p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.logout {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* TABS */
+.tab-container {
+  margin: 30px auto;
+  width: 90%;
+  background: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 14px;
+  margin: 0 8px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+}
+
+.tab.active {
+  background: linear-gradient(90deg, #f15a24, #e53935);
+  color: white;
+}
+
+/* CONTENT */
+.page-content {
+  width: 90%;
+  margin: auto;
+}

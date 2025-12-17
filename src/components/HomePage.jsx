@@ -18,7 +18,7 @@ const HomePage = () => {
 
       <button
         className="home-button"
-        onClick={() => navigate("/admin")}
+        onClick={() => navigate("/welcome")}
       >
         Go to Admin Dashboard
       </button>

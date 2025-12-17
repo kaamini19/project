@@ -1,39 +1,47 @@
 import React from "react";
+import { NavLink, Outlet } from "react-router-dom";
+import "./AdminDashboard.css";
 
-/**
- * Minimal AdminDashboard placeholder for debugging.
- * If this displays, the problem is inside your original AdminDashboard code.
- */
-
-export default function AdminDashboard() {
+const AdminDashboard = () => {
   return (
-    <div style={{
-      padding: 28,
-      fontFamily: "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial",
-      background: "linear-gradient(180deg,#fff,#f7f7f8)",
-      minHeight: "80vh"
-    }}>
-      <h1 style={{ marginTop: 0 }}>Admin Dashboard — Debug Placeholder</h1>
-      <p style={{ color: "#444" }}>
-        If you see this page, the router and auth wrapper are working correctly.
-        The original AdminDashboard component likely contains an import/runtime error.
-      </p>
+    <div className="admin-wrapper">
 
-      <div style={{ marginTop: 18 }}>
-        <button
-          onClick={() => alert("Admin placeholder working")}
-          style={{
-            padding: "10px 14px",
-            borderRadius: 8,
-            background: "#d86305",
-            color: "#fff",
-            border: "none",
-            cursor: "pointer"
-          }}
-        >
-          Test button
-        </button>
+      {/* HEADER */}
+      <div className="admin-header">
+        <div className="admin-left">
+          <div className="admin-icon">🛡️</div>
+          <div>
+            <h2>Admin Panel</h2>
+            <p>Altrex@123.com</p>
+          </div>
+        </div>
+
+        <div className="logout">↪</div>
       </div>
+
+      {/* TABS */}
+      <div className="tab-container">
+        <NavLink to="/admin/dashboard" end className="tab">
+          📊 Overview
+        </NavLink>
+        <NavLink to="/admin/vyapari" className="tab">
+          👥 Vyapari
+        </NavLink>
+        <NavLink to="/admin/karigar" className="tab">
+          🛠 Karigar
+        </NavLink>
+        <NavLink to="/admin/assign" className="tab">
+          🔁 Assign
+        </NavLink>
+        <NavLink to="/admin/orders" className="tab">
+          📦 Orders
+        </NavLink>
+      </div>
+
+      
+
     </div>
   );
-}
+};
+
+export default AdminDashboard;

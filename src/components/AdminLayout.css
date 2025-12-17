@@ -1,0 +1,35 @@
+.admin-wrapper {
+  min-height: 100vh;
+  background: #fff7ef;
+}
+
+/* TABS CONTAINER */
+.admin-tabs {
+  width: 90%;
+  margin: 40px auto 0;
+  background: white;
+  padding: 18px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* TAB BUTTONS */
+.tab {
+  text-decoration: none;
+  color: #555;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* ACTIVE TAB */
+.tab.active {
+  background: linear-gradient(90deg, #f25c1d, #e33d2e);
+  color: white;
+}
+
+/* PAGE CONTENT */
+.admin-content {
+  padding: 40px 50px;
+}
